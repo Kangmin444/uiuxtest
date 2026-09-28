@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>나의 서비스 | 서비스 소개</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!--
   사용자: uiux의 기초로 배우고 싶은 사람
@@ -39,17 +45,18 @@
 
     <section id="features">
       <h2>주요 기능</h2>
-
-      <ul>
-        <li>
+      <ul class="feature-list">
+        <li class="feature-card">
           <h3>빠른 시작</h3>
           <p>회원가입 없이 바로 확인합니다.</p>
         </li>
-        <li>
+
+        <li class="feature-card">
           <h3>쉬운 사용</h3>
           <p>복잡한 설정 없이 이용합니다.</p>
         </li>
-        <li>
+
+        <li class="feature-card">
           <h3>안전한 관리</h3>
           <p>정보를 안전하게 보호합니다.</p>
         </li>
@@ -67,7 +74,7 @@
       </ol>
     </section>
 
-    <section id="subscribe">
+    <section id="subscribe" class="subscribe-card">
       <h2>소식 받기</h2>
 
       <form>
@@ -76,9 +83,9 @@
           type="email"
           id="email"
           name="email"
-          placeholder="songgangmi n1005@gmail.com"
+          placeholder="songgangmin1005@gmail.com"
         >
-        <button type="submit">소식 신청하기</button>
+        <button type="submit">관리자에게 소식전하기</button>
       </form>
     </section>
   </main>
@@ -86,5 +93,9 @@
   <footer>
     <p>© 2026 나의 서비스</p>
   </footer>
+
+
 </body>
+
+
 </html>
