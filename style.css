@@ -11,7 +11,17 @@ main,
 footer{
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+img{
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 16px;
 }
 
 header{
@@ -28,9 +38,16 @@ footer{
     padding-bottom: 32px;
 }
 
+nav{
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+}
+
 nav a{
   color: #5b5870;
   font-weight: 700;
+  text-decoration: none;
 }
 
 h1{
@@ -62,14 +79,19 @@ p{
   list-style-type: none;
   padding-left: 0;
   margin: 0;
-  display: flex;
-  align-items: stretch;
+
+  display: grid;
+
+  /* 들어갈 수 있는 만큼 열을 만들고,
+  카드 너비는 최소 260px부터 남은 공간까지 사용 */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
   gap: 24px;
-  
+
 }
 
 .feature-card {
-  flex: 1;
+  min-width: 0;
   padding: 20px 24px;
   margin-bottom: 0;
   border: 1px solid #009fc7;
@@ -91,6 +113,20 @@ p{
   border-radius: 12px;
 }
 
+form{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+input{
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #b8b7c5;
+    border-radius: 10px;
+}
+
 button{
     padding: 12px 18px;
     border: 0;
@@ -99,6 +135,11 @@ button{
     background-color: #4cffa3;
     cursor: pointer;
     transition: background-color 0.2s, transfrom 0.2s ease;
+}
+
+input,
+button{
+    font: inherit;
 }
 
 button:hover{
@@ -113,4 +154,64 @@ input:focus{
 
 button:active{
     transform: translate(1px);
+}
+
+/* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
+@media (max-width: 768px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+
+  section {
+    margin-top: 40px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+
+  /* 가로 메뉴를 위에서 아래로 배치 */
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  nav a {
+    /* 링크 글자 주변에도 누를 수 있는 여백 추가*/
+    padding: 8px 0;
+  }
+
+  .features-list {
+        grid-template-columns: 1fr;
+  }
+
+  /* 이메일 입력창과 버튼도 한 열로 배치 */
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input,
+  button {
+    width: 100%;
+  }
+
+  button {
+    /* 모바일에서도 버튼의 누르는 영역이 너무 낮아지지 않게 설정 */
+    min-height: 48px;
+  }
 }
