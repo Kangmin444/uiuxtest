@@ -9,6 +9,7 @@ body {
 header,
 main,
 footer{
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding-left: 24px;
@@ -40,6 +41,7 @@ footer{
 
 nav{
     display: flex;
+    flex-wrap: wrap;
     gap: 24px;
     margin-top: 24px;
 }
@@ -105,7 +107,7 @@ p{
     box-sizing: border-box;
 }
 
-.subcribe-card{
+.subscribe-card{
   padding: 24px;
   margin-top: 32px;
   background-color: #fffefe;
@@ -134,7 +136,7 @@ button{
     color: #ffffff;
     background-color: #4cffa3;
     cursor: pointer;
-    transition: background-color 0.2s, transfrom 0.2s ease;
+    transition: background-color 0.2s, transform 0.2s ease;
 }
 
 input,
@@ -195,7 +197,7 @@ button:active{
     padding: 8px 0;
   }
 
-  .features-list {
+  .feature-list {
         grid-template-columns: 1fr;
   }
 
@@ -214,4 +216,32 @@ button:active{
     /* 모바일에서도 버튼의 누르는 영역이 너무 낮아지지 않게 설정 */
     min-height: 48px;
   }
+}
+
+/* 5주차: 이메일 신청 결과 안내 */
+#subscribeMessage {
+  margin-top: 16px;
+  color: #555763;
+}
+
+#subscribeMessage.is-success {
+  color: #245c3a;
+  background-color: #e7f7ed;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+#subscribeMessage.is-error {
+  color: #9b1c1c;
+  background-color: #ffe9e9;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+#subscribeButton:disabled {
+  color: #ffffff;
+  background-color: #a8a8b2;
+  cursor: not-allowed;
 }
