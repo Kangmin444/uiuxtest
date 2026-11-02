@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re:hear</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+    
+<body>
+    <!--
+      사용자: uiux의 기초로 배우고 싶은 사람
+      목적: 코딩으로 uiux의 주요 내용과 개발하는 방법을 알려준다
+      핵심 행동: 필요한 영역으로 이동하고 이메일로 소식을 신청한다.
+      정보 순서: 서비스 소개 → 주요 기능 → 이용 방법 → 훈련별 피드백 받기
+      -->
+    <header>
+        <h1>나의 서비스</h1>
+        <p>uiux의 첫걸음을 초보자도 알기 쉽게 알려준다.</p>
+
+        <nav aria-label="주요메뉴">
+            <a href="#about">서비스 소개</a>
+            <a href="#features">주요 기능</a>
+            <a href="#steps">이용 방법</a>
+            <a href="#subscribe">훈련별 피드백 받기</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>서비스 소개</h2>
+            <h3>코딩 실습을 할수있는 환경에서 코딩 연습</h3>
+
+            <img src="./assets/images/service.jpg" alt="코딩으로 웹을 개발하는 사용자">
+
+            <p>누구나 쉽게 시작하고 자신만의 웹을 개발할 수 있습니다.</p>
+        </section>
+
+        <section id="features">
+            <h2>주요기능</h2>
+            <ul class="feature-list">
+                <li class="feature-card">    
+                    <h3>.빠른시작</h3>
+                    <p>UI/UX의 기초를 살펴보고 원하는 코딩 과목을 선택할 수 있습니다.</p>
+                </li>
+
+                <li class="feature-card">
+                    <h3>쉬운사용</h3>
+                    <p>서비스 소개와 이용 방법을 순서대로 확인할 수 있습니다.</p>
+                </li>
+
+                <li class="feature-card">
+                    <h3>안전한 관리</h3>
+                    <p>이용 안내를 확인하고 동의한 뒤 서비스 시작 버튼을 사용할 수 있습니다.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="steps">
+            <h2> 이용 방법 </h2>
+            <ol>
+                <li>회원가입후 및 로그인합니다.</li>
+                <li>원하는 코딩 과목을 선택합니다.</li>
+                <li>코딩 과목을 선택하면 해당 교실을 배정합니다.</li>
+                <li>수업이 끝나면 신청자들의 문의내용을 ai로 정리하여 담당자에게 전송됩니다.</li>
+            </ol>
+        </section>
+
+        <section id="event-practice">
+            <h2> 사용자 반응 연습 </h2>
+
+            <div class="event-grid">
+                <article class="event-card">
+                <h3>click 이벤트</h3>
+                <button id="themeButton" type="button">테마 바꾸기</button>
+                </article>
+
+                <article class="event-card">
+                    <h3>input 이벤트</h3>
+                    <label for="nickname">발표자 이름</label>
+                    <input type="text" id="nickname" maxlength="10">
+                    <p id="nicknameCount" aria-live="polite">0 / 10</p>
+                </article>
+
+                <article class="event-card">
+                    <h3>change 이벤트</h3>
+                    <label class="agree-row">
+                        <input type="checkbox" id="agreeCheck">
+                        발표 분석을 위한 녹음 활용에 동의합니다.
+                    </label>
+                    <p id="agreeMessage" aria-live="polite">
+                        동의 후 훈련을 시작할 수 있습니다.
+                    </p>
+                    <button id="startTrainingButton" type="button" disabled>
+                        훈련 시작하기
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <section id="subscribe" class="subscribe-card">
+            <h2> 회원별 피드백 받기 </h2>
+            <form id="subscribe-form">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email">
+                <button type="submit">강사에게 피드백 신청하기</button>
+            </form>
+
+            <p id="subscribeMessage" aria-live="polite">
+                이메일을 입력한 뒤 신청해주세요
+            </p>          
+        </section>
+    </main>
+
+    <footer>
+        <small>© 2026 uiux 코칭 서비스. 모든 권리 보유.</small>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

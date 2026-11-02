@@ -1,0 +1,286 @@
+body {
+    color: #292a31;
+    font-family: "Noto Sans KR", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #a6a6ff;
+}
+
+header,
+main,
+footer{
+    /* 좁은 화면에서는 사용 가능한 너비에 맞춰 줄어듭니다.*/
+    width: 100%;
+
+    /* 넓은 화면에서도 콘텐츠는 1100px보다 커지지 않습니다.*/
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+img{
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 16px;
+}
+
+header{
+    padding-top: 48px;
+    padding-bottom: 32px;
+}
+
+section{
+    margin-top: 56px;
+}
+
+footer{
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+nav{
+    display: flex;
+
+    /* 메뉴가 들어갈 자리가 부족하면 다음 줄로 이동 */
+    flex-wrap: wrap;
+
+    gap: 24px;
+    margin-top: 24px;
+}
+
+nav a{
+    color: #5b5870;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+h1{
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h2{
+    color: #000;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+h3{
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+p{
+    color: #000;
+    line-height: 1.7;
+}
+
+.feature-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+
+    display: grid;
+
+    /* 들어갈 수 있는 만큼 열을 만들고,
+    카드 너비는 최소 260px부터 남은 공간까지 사용 */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    /* 카드가 좁게 눌리지 않고 다음 줄로 이동
+    flex-wrap: wrap;
+
+    align-items: stretch; 삭제*/
+    gap: 24px;
+}
+
+.feature-card {
+    min-width: 0;
+    padding: 20px 24px;
+    margin-bottom: 0;
+    border: 1px solid #009fc7;
+    border-radius: 12px;
+    background-color: #b5f7bc;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.subscribe-card{
+    padding: 24px;
+    margin-top: 32px;
+    background-color: #fffefe;
+    border: 1px solid #fffefe;
+    border-radius: 12px;
+}
+
+.feature-list{
+    grid-template-columns: 1fr;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+input{
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #b8b7c5;
+    border-radius: 10px;
+}
+
+button{
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #4cffa3;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+input,
+button{
+    font: inherit;
+}
+
+button:hover{
+    background-color: #148e4b;
+}
+
+button:focus,
+input:focus{
+    outline: 3px solid #a4fab4;
+    outline-offset: 2px;
+}
+
+button:active{
+    transform: translate(1px);
+}
+
+/* 5주차: 이메일 신청 결과 안내 */
+#subscribeMessage {
+  margin-top: 16px;
+  color: #555763;
+}
+
+#subscribeMessage.is-success {
+  color: #245c3a;
+  background-color: #e7f7ed;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+#subscribeMessage.is-error {
+  color: #9b1c1c;
+  background-color: #ffe9e9;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+#subscribeButton:disabled {
+  color: #ffffff;
+  background-color: #a8a8b2;
+  cursor: not-allowed;
+}
+
+
+/* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
+@media (max-width: 768px) {
+    body{
+        font-size: 16px;
+    }
+
+    header{
+        padding-top: 32px;
+        padding-bottom: 24px;
+    }
+
+    section{
+        margin-top: 40px;
+    }
+
+    h1{
+        font-size: 36px;
+    }
+
+    h2{
+        font-size: 28px;
+    }
+
+    /* 가로 메뉴를 위에서 아래로 배치 */
+    nav{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    nav a{
+        /* 링크 글자 주변에도 누를 수 있는 여백 추가*/
+        padding: 8px 0;
+    }
+
+    .feature-list{
+        grid-template-columns: 1fr;
+    }
+
+    /*
+    .feature-card{
+        /* 세로 배치에서는 260px을 카드 높이로 사용하지 않음 
+        flex: none;
+        width: 100%;
+    } */
+
+    /* 이메일 입력창과 버튼도 한 열로 배치 */
+    form{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input,
+    button{
+        width: 100%;
+    }
+
+    button{
+        /* 모바일에서도 버튼의 누르는 영역이 너무 낮아지지 않게 설정 */
+        min-height: 48px;
+    }
+
+
+    /* 5주차: 이메일 신청 결과 안내 */
+    #subscribeMessage{
+        margin-top: 16px;
+        color: #555763;
+    }
+
+    #subscribeMessage.is-success{
+        color: #245c3a;
+        background-color: #e7f7ed;
+         padding: 12px;
+         border-radius: 10px;
+         font-weight: 700;
+    }
+
+    #subscribeButton:disabled {
+        color: #ffffff;
+        background-color: #a8a8b2;
+        cursor: not-allowed;
+    }
+}
