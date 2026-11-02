@@ -4,13 +4,13 @@ let submitCount = 0;
 
 function makeSubscribeMessage(email, subscribed) {
     if (subscribed == true) {
-        return email + "로 신청이 완료되었습니다.";
+        return email + " 주소로 받을 피드백 요청서를 확인했습니다. (프로토타입: 실제 이메일 미전송)";
     }
 
-    return "이메일을 입력한 뒤 신청해주세요.";
+    return "피드백 요청서를 확인한 다음 이메일을 입력해 주세요.";
 }
 
-const subscribeForm = document.querySelector("#subscribeForm");
+const subscribeForm = document.querySelector("#subscribe-form");
 const emailInput = document.querySelector("#email");
 const subscribeButton = document.querySelector("#subscribeButton");
 const subscribeMessage = document.querySelector("#subscribeMessage");
@@ -25,25 +25,24 @@ console.log(makeSubscribeMessage("learner@example.com", true));*/
 
 function handleSubscribe(event) {
     event.preventDefault();
-
     const subscriberEmail = emailInput.value.trim();
-
-    if (subscriberEmail === "") {
-        subscribeMessage.textContent =
-            "이메일을 입력한 뒤 신청해주세요.";
+    subscribeMessage.classList.remove("is-success", "is-error");
+    if (!feedbackReady) {
+        subscribeMessage.textContent = "피드백 요청서를 먼저 작성하고 확인해 주세요.";
+        subscribeMessage.classList.add("is-error");
+        return;
+    }
+    if (subscriberEmail === "" || !emailInput.validity.valid) {
+        subscribeMessage.textContent = "올바른 이메일 주소를 입력해 주세요. (예: name@example.com)";
+        subscribeMessage.classList.add("is-error");
         emailInput.focus();
         return;
     }
-
     isSubscribed = true;
     submitCount += 1;
-
-    subscribeMessage.textContent = 
-        makeSubscribeMessage(subscriberEmail, isSubscribed);
-    
+    subscribeMessage.textContent = makeSubscribeMessage(subscriberEmail, isSubscribed);
     subscribeMessage.classList.add("is-success");
-
-    subscribeButton.textContent = "신청 완료";
+    subscribeButton.textContent = "요청 내용 확인 완료";
     subscribeButton.disabled = true;
 }
 
@@ -58,7 +57,7 @@ const agreeMessage = document.querySelector("#agreeMessage");
 const startButton = document.querySelector("#startButton");
 
 function handleThemeClick() {
-    const siDark = document.body.classList.toggle("dark");
+    const isDark = document.body.classList.toggle("dark");
 
     themeButton.textContent = isDark ? "라이트 테마로 바꾸기" : "다크 테마로 바꾸기";
 }
@@ -79,8 +78,8 @@ function handleAgreeChange() {
 
     startButton.disabled = !agreed;
     agreeMessage.textContent = agreed
-        ? "서비스 설정을 시작할 수 있습니다."
-        : "동의 후 서비스 설정을 시작할 수 있습니다.";
+        ? "수업 신청 설정을 시작할 수 있습니다."
+        : "동의 후 수업 신청 설정을 시작할 수 있습니다.";
     
     if (agreed) {
         agreeMessage.classList.add("is-ready");    
@@ -144,10 +143,10 @@ const restartButton = document.querySelector("#restart-button");
 const summaryTitle = document.querySelector("#summary-title");
 const summaryDuration = document.querySelector("#summary-duration");
 const summaryQna = document.querySelector("#summary-qna");
-const durationValues = ["3", "5", "10"];
+const durationValues = ["30", "60", "90"];
 
 const formData = {
-    title: "", duration: "5", qna: false, qnaCount: "2"
+    title: "", duration: "60", qna: false, qnaCount: "2"
 };
 
 
@@ -175,7 +174,7 @@ startButton.addEventListener("click", () => {
 });
 
 recordingCancel.addEventListener("click", () => {
-    recordingDialog.closest();
+    recordingDialog.close();
     revokeRecordingAgreement();        
 });
 
@@ -193,7 +192,7 @@ recordingConfirm.addEventListener("click", () => {
 function validateTitle() {
     const value = titleInput.value.trim();
     if (!value) {
-        titleError.textContent = "발표 제목을 입력해 주세요.";
+        titleError.textContent = "수업에서 배우고 싶은 학습 목표를 입력해 주세요.";
         titleInput.classList.add("has-error");
         titleInput.focus();
         return false;
@@ -233,14 +232,14 @@ summaryPrev.addEventListener("click", () => showStep(1));
 finishButton.addEventListener("click", () => showStep(3));
 restartButton.addEventListener("click", () => {
     formData.title = "";
-    formData.duration = "5";
+    formData.duration = "60";
     formData.qna = false;
     formData.qnaCount = "2";
     titleInput.value = "";
     titleError.textContent = "";
     titleInput.classList.remove("has-error");
     durationRange.value = "1";
-    durationValue.value = "5분";
+    durationValue.value = "60분";
     qnaOption.checked = false;
     qnaOptions.hidden = true;
     document.querySelector('input[name="qna-count"][value="2"]').checked = true;
@@ -248,4 +247,102 @@ restartButton.addEventListener("click", () => {
     summaryDuration.textContent = "";
     summaryQna.textContent = "";
     showStep(0);
-})
+});
+
+// 중간고사 신규 기능: 수업 설정 완료 → 강사 피드백 요청서 작성 → 이메일 확인
+const feedbackOpen = document.querySelector("#feedback-open");
+const feedbackSection = document.querySelector("#feedback-request");
+const feedbackClass = document.querySelector("#feedback-class");
+const feedbackDetail = document.querySelector("#feedback-detail");
+const courseFinished = document.querySelector("#course-finished");
+const feedbackError = document.querySelector("#feedback-error");
+const feedbackInputs = document.querySelector("#feedback-inputs");
+const feedbackPreview = document.querySelector("#feedback-preview");
+const feedbackCheck = document.querySelector("#feedback-check");
+const feedbackCancel = document.querySelector("#feedback-cancel");
+const feedbackEdit = document.querySelector("#feedback-edit");
+const feedbackToEmail = document.querySelector("#feedback-to-email");
+let feedbackReady = false;
+let applicationCompleted = false;
+
+function resetFeedback() {
+    feedbackSection.hidden = true;
+    feedbackDetail.value = "";
+    courseFinished.checked = false;
+    document.querySelectorAll('input[name="feedback-topic"]').forEach(function (radio) {
+        radio.checked = false;
+    });
+    feedbackError.textContent = "";
+    feedbackInputs.hidden = false;
+    feedbackPreview.hidden = true;
+    feedbackReady = false;
+    emailInput.value = "";
+    subscribeButton.disabled = false;
+    subscribeButton.textContent = "이메일로 피드백 요청 완료하기";
+    subscribeMessage.textContent = "피드백 요청서를 먼저 작성한 다음 이메일을 입력해 주세요.";
+    subscribeMessage.classList.remove("is-success", "is-error");
+    isSubscribed = false;
+}
+
+// 기존 완료·다시 설정 버튼에 새 사용 경로를 연결
+finishButton.addEventListener("click", function () {
+    applicationCompleted = true;
+});
+restartButton.addEventListener("click", function () {
+    applicationCompleted = false;
+    resetFeedback();
+});
+
+feedbackOpen.addEventListener("click", function () {
+    if (!applicationCompleted) return;
+    feedbackSection.hidden = false;
+    feedbackClass.textContent = "학습 목표: " + formData.title;
+    feedbackSection.scrollIntoView({ behavior: "smooth" });
+});
+
+feedbackCheck.addEventListener("click", function () {
+    const selectedTopic = document.querySelector('input[name="feedback-topic"]:checked');
+    const detail = feedbackDetail.value.trim();
+    feedbackError.textContent = "";
+    if (!courseFinished.checked) {
+        feedbackError.textContent = "수업을 수강한 뒤 확인란을 선택해 주세요.";
+        courseFinished.focus();
+        return;
+    }
+    if (!selectedTopic) {
+        feedbackError.textContent = "피드백받을 항목을 하나 선택해 주세요.";
+        return;
+    }
+    if (!detail) {
+        feedbackError.textContent = "강사에게 요청할 내용을 입력해 주세요.";
+        feedbackDetail.focus();
+        return;
+    }
+    document.querySelector("#feedback-summary-class").textContent = formData.title;
+    document.querySelector("#feedback-summary-topic").textContent = selectedTopic.value;
+    document.querySelector("#feedback-summary-detail").textContent = detail;
+    feedbackInputs.hidden = true;
+    feedbackPreview.hidden = false;
+    feedbackReady = false;
+});
+
+feedbackEdit.addEventListener("click", function () {
+    feedbackPreview.hidden = true;
+    feedbackInputs.hidden = false;
+    feedbackReady = false;
+    feedbackDetail.focus();
+});
+
+feedbackCancel.addEventListener("click", function () {
+    resetFeedback();
+    subscribeMessage.textContent = "피드백 요청서 작성을 취소했습니다. 수업 신청 완료 화면에서 다시 시작할 수 있습니다.";
+    trainingFlow.scrollIntoView({ behavior: "smooth" });
+});
+
+feedbackToEmail.addEventListener("click", function () {
+    feedbackReady = true;
+    subscribeMessage.textContent = "요청서 확인을 완료했습니다. 피드백받을 이메일을 입력해 주세요.";
+    subscribeMessage.classList.remove("is-error", "is-success");
+    document.querySelector("#subscribe").scrollIntoView({ behavior: "smooth" });
+    emailInput.focus();
+});
