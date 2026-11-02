@@ -14,111 +14,278 @@
     
 <body>
     <!--
-      사용자: uiux의 기초로 배우고 싶은 사람
-      목적: 코딩으로 uiux의 주요 내용과 개발하는 방법을 알려준다
-      핵심 행동: 필요한 영역으로 이동하고 이메일로 소식을 신청한다.
-      정보 순서: 서비스 소개 → 주요 기능 → 이용 방법 → 훈련별 피드백 받기
+      사용자: UI/UX 웹 개발 기초 수업을 신청하고 강사 피드백을 받고 싶은 학습자
+      목적: UI/UX 수업 신청 과정을 안내하고 수업 후 피드백을 요청한다
+      핵심 행동: 수업 신청 정보를 설정하고 수업 후 피드백 요청서와 이메일을 작성한다.
+      정보 순서: 서비스 소개 → 주요 기능 → 이용 방법 → 수업 신청 → 강사 피드백 요청
       -->
     <header>
-        <h1>나의 서비스</h1>
-        <p>uiux의 첫걸음을 초보자도 알기 쉽게 알려준다.</p>
+        <h1>Re:hear · UI/UX 수업 신청</h1>
+        <p>UI/UX 기초 수업을 신청하고, 수업 후 강사의 피드백을 요청할 수 있습니다.</p>
 
         <nav aria-label="주요메뉴">
             <a href="#about">서비스 소개</a>
             <a href="#features">주요 기능</a>
             <a href="#steps">이용 방법</a>
-            <a href="#subscribe">훈련별 피드백 받기</a>
+            <a href="#subscribe">강사 피드백 요청</a>
         </nav>
     </header>
 
     <main>
         <section id="about">
             <h2>서비스 소개</h2>
-            <h3>코딩 실습을 할수있는 환경에서 코딩 연습</h3>
+            <h3>UI/UX 웹 개발 기초 수업 신청</h3>
 
             <img src="./assets/images/service.jpg" alt="코딩으로 웹을 개발하는 사용자">
 
-            <p>누구나 쉽게 시작하고 자신만의 웹을 개발할 수 있습니다.</p>
+            <p>UI/UX 수업 신청 조건을 확인하고, 수업이 끝난 뒤 피드백 요청 내용을 작성해 보세요.</p>
         </section>
 
         <section id="features">
             <h2>주요기능</h2>
+
+            <div class="tabs" role="tablist" aria-label="기능 선택">
+                <button
+                    id="tab-practice"
+                    class="tab is-active"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="feature-practice"
+                    data-target="#feature-practice">
+                    빠른 시작
+                </button>        
+
+                <button
+                    id="tab-audience"
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="feature-audience"
+                    data-target="#feature-audience">
+                    쉬운 사용
+                </button>
+
+                <button
+                    id="tab-feedback"
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="feature-feedback"
+                    data-target="#feature-feedback">
+                    안전한 관리
+                </button>
+            </div>
+            <!-- 버튼 형식으로 변경
             <ul class="feature-list">
                 <li class="feature-card">    
                     <h3>.빠른시작</h3>
-                    <p>UI/UX의 기초를 살펴보고 원하는 코딩 과목을 선택할 수 있습니다.</p>
+                    <p>UI/UX 기초 수업의 학습 목표와 희망 수업 시간을 간편하게 설정할 수 있습니다.</p>
                 </li>
 
                 <li class="feature-card">
                     <h3>쉬운사용</h3>
-                    <p>서비스 소개와 이용 방법을 순서대로 확인할 수 있습니다.</p>
+                    <p>서비스 안내부터 수업 신청, 피드백 요청까지 순서대로 확인할 수 있습니다.</p>
                 </li>
 
                 <li class="feature-card">
                     <h3>안전한 관리</h3>
-                    <p>이용 안내를 확인하고 동의한 뒤 서비스 시작 버튼을 사용할 수 있습니다.</p>
+                    <p>신청 안내에 동의한 뒤 수업 신청 설정을 시작할 수 있습니다.</p>
                 </li>
-            </ul>
+            </ul> -->
+            <div    
+                id="feature-practice"
+                class="panel is-active"
+                role="tabpanel"
+                aria-labelledby="tab-practice">
+                <h3>빠른 시작</h3>
+                <p>UI/UX 기초 수업의 학습 목표와 희망 수업 시간을 간편하게 설정할 수 있습니다.</p>
+            </div>
+
+            <div
+                id="feature-audience"
+                class="panel"
+                role="tabpanel"
+                aria-labelledby="tab-audience"
+                hidden>
+                <h3>쉬운 사용</h3>
+                <p>서비스 안내부터 수업 신청, 피드백 요청까지 순서대로 확인할 수 있습니다.</p>
+            </div>
+
+            <div
+                id="feature-feedback"
+                class="panel"
+                role="tabpanel"
+                aria-labelledby="tab-feedback"
+                hidden>
+                <h3>안전한 관리</h3>
+                <p>신청 안내에 동의한 뒤 수업 신청 설정을 시작할 수 있습니다.</p>
+            </div>                 
         </section>
 
         <section id="steps">
             <h2> 이용 방법 </h2>
             <ol>
-                <li>회원가입후 및 로그인합니다.</li>
-                <li>원하는 코딩 과목을 선택합니다.</li>
-                <li>코딩 과목을 선택하면 해당 교실을 배정합니다.</li>
-                <li>수업이 끝나면 신청자들의 문의내용을 ai로 정리하여 담당자에게 전송됩니다.</li>
+                <li>수업 신청 안내를 확인하고 동의합니다.</li>
+                <li>UI/UX 수업에서 배우고 싶은 내용과 희망 수업 시간을 설정합니다.</li>
+                <li>수업 신청 내용을 최종 확인하고 설정을 완료합니다.</li>
+                <li>실제 수업이 끝나면 수강 완료 여부를 확인하고, 피드백 요청서와 이메일을 작성합니다.</li>
             </ol>
         </section>
 
         <section id="event-practice">
-            <h2> 사용자 반응 연습 </h2>
+            <h2>수업 신청 준비</h2>
 
             <div class="event-grid">
                 <article class="event-card">
-                <h3>click 이벤트</h3>
-                <button id="themeButton" type="button">테마 바꾸기</button>
+                <h3>화면 테마</h3>
+                <button id="themeButton" type="button">다크 테마로 바꾸기</button>
                 </article>
 
                 <article class="event-card">
-                    <h3>input 이벤트</h3>
-                    <label for="nickname">발표자 이름</label>
+                    <h3>신청자 정보</h3>
+                    <label for="nickname">신청자 이름 (선택)</label>
                     <input type="text" id="nickname" maxlength="10">
                     <p id="nicknameCount" aria-live="polite">0 / 10</p>
                 </article>
 
                 <article class="event-card">
-                    <h3>change 이벤트</h3>
+                    <h3>수업 신청 안내 동의</h3>
                     <label class="agree-row">
                         <input type="checkbox" id="agreeCheck">
-                        발표 분석을 위한 녹음 활용에 동의합니다.
+                        수업 신청 안내를 확인했고, 신청 정보 입력에 동의합니다.
                     </label>
                     <p id="agreeMessage" aria-live="polite">
-                        동의 후 훈련을 시작할 수 있습니다.
+                        동의 후 수업 신청 설정을 시작할 수 있습니다.
                     </p>
-                    <button id="startTrainingButton" type="button" disabled>
-                        훈련 시작하기
+                    <button id="startButton" type="button" disabled>
+                        수업 신청 설정 시작하기
                     </button>
                 </article>
             </div>
         </section>
 
+        <dialog id = "recording-dialog" aria-labelledby="recording-title" aria-describedby="recording-description">
+            <h2 id = "recording-title"> 수업 신청 안내 </h2>
+            <p id = "recording-description"> UI/UX 수업 신청 정보를 설정합니다. 이 페이지는 과제용 프로토타입이므로 실제 수업 예약이나 정보 전송은 진행되지 않습니다. </p>
+            <div class = "dialog-actions">
+                <button id = "recording-cancel" type = "button"> 돌아가기 </button>
+                <button id = "recording-confirm" type = "button"> 동의하고 신청 설정 시작하기 </button> 
+            </div>
+        </dialog>
+
+        <section id = "training-flow" class = "training-flow" hidden>
+            <h2> UI/UX 수업 신청 설정 </h2>
+            <p class = "progress" aria-label="설정 진행 단계">
+                <span class = "progress__item">1 · 정보</span>
+                <span class = "progress__item">2 · 조건</span>
+                <span class = "progress__item">3 · 확인</span>
+            </p>
+            
+        <section class="step" data-step="1" hidden>
+            <h3>수업 신청 정보를 입력해 주세요.</h3>
+            <label for="presentation-title">학습 목표</label>
+            <input id="presentation-title" type="text" placeholder="예: 반응형 웹페이지를 직접 만들어 보고 싶습니다" aria-describedby="title-error">
+            <p id="title-error" class="error-message" aria-live="polite"></p>
+            <button id="title-next" type="button">수업 조건 선택하기</button>
+        </section>
+
+        <section class="step" data-step="2" hidden>
+            <h3>희망 수업 조건을 선택해 주세요.</h3>
+            <label for="duration-range">희망 수업 시간</label>
+            <input id="duration-range" type="range" min="0" max="2" step="1" value="1">
+            <output id="duration-value" for="duration-range">60분</output>
+            <label><input type="checkbox" id="qna-option">수업 중 질의응답 포함</label>
+            <fieldset id="qna-options" hidden>
+                <legend>희망 질문 수</legend>
+                <label><input type="radio" name="qna-count" value="1">1개</label>
+                <label><input type="radio" name="qna-count" value="2" checked>2개</label>
+                <label><input type="radio" name="qna-count" value="3">3개</label>
+            </fieldset>
+            <div class="step-actions">
+                <button id="option-prev" type="button">이전</button>
+                <button id="option-next" type="button">내용 확인하기</button>
+            </div>
+        </section>
+    
+        <section class="step" data-step="3" hidden>
+            <h3>입력한 내용을 확인해 주세요.</h3>
+            <div class="summary-list">
+                <div><span>학습 목표</span><strong id="summary-title"></strong></div>
+                <div><span>희망 수업 시간</span><strong id="summary-duration"></strong></div>
+                <div><span>질의응답</span><strong id="summary-qna"></strong></div>
+            </div>
+            <div class="step-actions">
+                <button id="summary-prev" type="button">수정하기</button>
+                <button id="finish-button" type="button">신청 내용 확인 완료</button>
+            </div>
+        </section>
+
+        <section class="step complete-step" data-step="4" hidden>
+            <h3>수업 신청 내용 확인이 완료되었습니다.</h3>
+            <p>신청 내용을 확인했습니다. 이는 실제 예약이 아닌 시연용입니다. 수업을 수강한 뒤 피드백 요청 단계로 진행해 주세요.</p>
+            <div class="step-actions"><button id="restart-button" type="button">수업 신청 다시 설정하기</button>
+            <button id="feedback-open" type="button">수업 수강 후 피드백 요청하기</button></div>
+        </section>
+
+    </section>
+
+
+        <!-- 중간고사 신규 기능: 7주차 설정 완료 후 수업 피드백 요청서 작성 -->
+        <section id="feedback-request" class="training-flow" hidden>
+            <h2>강사 피드백 요청서 작성</h2>
+            <p>수업을 실제로 수강했다면 수강 여부를 체크하고 피드백받고 싶은 내용을 작성해 주세요. (수강 여부는 시연용 자가 확인이며 검증하지 않습니다.)</p>
+            <p id="feedback-class" class="feedback-context" aria-live="polite"></p>
+            <div class="feedback-inputs" id="feedback-inputs">
+                <label class="agree-row"><input type="checkbox" id="course-finished"> UI/UX 수업을 수강했습니다. (시연용 확인)</label>
+                <fieldset>
+                    <legend>피드백받을 항목</legend>
+                    <label><input type="radio" name="feedback-topic" value="디자인 구성"> 디자인 구성</label>
+                    <label><input type="radio" name="feedback-topic" value="사용자 편의성"> 사용자 편의성</label>
+                    <label><input type="radio" name="feedback-topic" value="HTML/CSS 코드"> HTML/CSS 코드</label>
+                </fieldset>
+                <label for="feedback-detail">강사에게 요청할 내용</label>
+                <textarea id="feedback-detail" rows="4" maxlength="500" placeholder="예: 제가 만든 웹페이지의 버튼 배치가 적절한지 확인해 주세요."></textarea>
+                <p id="feedback-error" class="error-message" aria-live="polite"></p>
+                <div class="step-actions">
+                    <button id="feedback-cancel" type="button" class="secondary-button">작성 취소</button>
+                    <button id="feedback-check" type="button">피드백 요청 내용 확인</button>
+                </div>
+            </div>
+            <div id="feedback-preview" hidden>
+                <h3>작성한 피드백 요청서</h3>
+                <div class="summary-list">
+                    <div><span>학습 목표</span><strong id="feedback-summary-class"></strong></div>
+                    <div><span>요청 항목</span><strong id="feedback-summary-topic"></strong></div>
+                    <div><span>요청 내용</span><strong id="feedback-summary-detail"></strong></div>
+                </div>
+                <div class="step-actions">
+                    <button id="feedback-edit" type="button" class="secondary-button">요청 내용 수정하기</button>
+                    <button id="feedback-to-email" type="button">이메일 입력하기</button>
+                </div>
+            </div>
+        </section>
+
         <section id="subscribe" class="subscribe-card">
-            <h2> 회원별 피드백 받기 </h2>
-            <form id="subscribe-form">
+            <h2> 수업 종료 후 강사 피드백 이메일 신청 </h2>
+            <p>작성한 요청서를 확인한 뒤 이메일을 입력해 주세요. 실제 이메일은 전송되지 않습니다.</p>
+            <form id="subscribe-form" novalidate>
                 <label for="email">이메일</label>
-                <input type="email" id="email" name="email">
-                <button type="submit">강사에게 피드백 신청하기</button>
+                <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" aria-describedby="subscribeMessage">
+                <button id="subscribeButton" type="submit">이메일로 피드백 요청 완료하기</button>
             </form>
 
             <p id="subscribeMessage" aria-live="polite">
-                이메일을 입력한 뒤 신청해주세요
+                피드백 요청서를 먼저 작성한 다음 이메일을 입력해 주세요.
             </p>          
         </section>
     </main>
 
+
     <footer>
-        <small>© 2026 uiux 코칭 서비스. 모든 권리 보유.</small>
+        <small>© 2026 Re:hear UI/UX 수업 신청 프로토타입.</small>
     </footer>
 
     <script src="script.js"></script>

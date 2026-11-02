@@ -200,6 +200,196 @@ button:active{
   cursor: not-allowed;
 }
 
+.event-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.event-card{
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.event-card label:not(.agree-row){
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.event-card input[type="text"]{
+    width: 100%;
+}
+
+.agree-row{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.agree-row input{
+    flex: 0 0 auto;
+    margin-top: 6px;
+}
+
+#startButton:disabled {
+    color: #ffffff;
+    background-color: #a8a8b2;
+    cursor: not-allowed;
+}
+
+/* 다크 테마 설정시 */
+body.dark{
+    color: #f4f4f8;
+    background-color: #20212a; 
+}
+
+body.dark p,
+body.dark nav a{
+    color: #d8d8e2;
+}
+
+body.dark .feature-card,
+body.dark .event-card,
+body.dark .subscribe-card{
+    border-color: #50515f;
+    background-color: #2d2e38;
+}
+
+#agreeMessage{
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #ecebf2; 
+}
+
+#agreeMessage.is-ready{ 
+    color: #245c3a; 
+    background-color: #e7f7ed; 
+    font-weight: 700; 
+}
+
+/* 6주차: 탭 */
+.tabs{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin-bottom: 12px; 
+}
+
+.tab{
+    color: #5b5870;
+    background-color: #ffffff;
+    border: 1px solid #deddea; 
+}
+
+.tab:hover{
+    color: #ffffff; 
+    background-color: #4b43db; 
+}
+
+.tab.is-active {
+    color: #635bff;
+    background-color: #ffffff;
+    border-color: #635bff;
+    border-bottom: 4px solid currentColor;
+    font-weight: 700;
+}
+
+.panel{ 
+    padding: 24px; 
+    border: 1px solid #deddea; 
+    border-radius: 12px; 
+    background-color: #f4f3ff; 
+}
+
+.panel[hidden]{ 
+    display: none; 
+}
+
+body.dark .tab{
+    color: #d8d8e2; 
+    background-color: #2d2e38;
+    border-color: #50515f; 
+}
+
+body.dark .tab.is-active{
+    color: #c2beff; 
+    border-color: #c2beff; 
+}
+
+body.dark .panel
+{
+    background-color: #2d2e38;
+    border-color: #50515f;
+}
+
+/* 7주차 */
+#recording-dialog{
+    width: min(520px, calc(100% - 32px));
+    max-width: none;
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 12px;
+    background: #fff;
+    color: #27232c;
+}
+
+#recording-dialog::backdrop {background: rgba(30, 20, 39, .6);}
+#recording-dialog .dialog-actions {display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px;}
+#recording-dialog button {min-height: 44px;}
+body.dark #recording-dialog {background: #50515f; color: #fff;}
+
+.training-flow{
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.training-flow[hidden],
+.training-flow .step[hidden],
+.training-flow fieldset[hidden] {display: none;}
+.training-flow .progress {display: flex; flex-wrap: wrap; gap: 12px}
+.training-flow .progress__item.is-active{
+    color: #635bff;
+    font-weight: 800;
+}
+
+.training-flow .error-message{
+    min-height: 24px;
+    color: #9d243d;
+    font-weight: 700;
+}
+.training-flow #presentation-title.has-error {border-color: #9d243d;}
+.training-flow #duration-range {width: 100%; accent-color: #635bff;}
+.training-flow input[type="checkbox"],
+.training-flow input[type="radio"] {
+    flex: 0 0 auto;
+    width: auto;
+    accent-color: #635bff;
+}
+
+.training-flow .summary-list > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #deddea;
+}
+
+.training-flow .step-actions{
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+body.dark .training-flow{
+    background-color: #50515f;
+    border-color: #2d2e38;
+}
 
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media (max-width: 768px) {
@@ -263,24 +453,143 @@ button:active{
         min-height: 48px;
     }
 
-
-    /* 5주차: 이메일 신청 결과 안내 */
-    #subscribeMessage{
-        margin-top: 16px;
-        color: #555763;
+    .tab{
+        width: 100%;
+        text-align: left;
     }
 
-    #subscribeMessage.is-success{
-        color: #245c3a;
-        background-color: #e7f7ed;
-         padding: 12px;
-         border-radius: 10px;
-         font-weight: 700;
-    }
-
-    #subscribeButton:disabled {
-        color: #ffffff;
-        background-color: #a8a8b2;
-        cursor: not-allowed;
-    }
+    .training-flow {padding: 20px;}
+    #recording-dialog .dialog-actions {flex-direction: column-reverse;}
+    #recording-dialog .dialog-actions button {width: 100%;}
+    .training-flow .step-actions {flex-direction: column-reverse;}
+    .training-flow .step-actions button {width: 100%;}
+    .training-flow input[type="checkbox"],
+    .training-flow input[type="radio"] {width: auto;}
 }
+
+/* 중간고사 디자인 정리: 수업 신청 페이지용 색상 변경 (기존 배치 유지) */
+body {
+    color: #253044;
+    background-color: #f5f7fb;
+}
+
+h2, h3, p { color: #253044; }
+nav a { color: #334155; }
+nav a:hover { color: #2456a6; }
+
+.feature-card, .event-card, .subscribe-card, .training-flow {
+    color: #253044;
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+.feature-card { background-color: #ffffff; }
+.panel {
+    color: #253044;
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+input, textarea, select {
+    color: #253044;
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+}
+button {
+    color: #ffffff;
+    background-color: #2563a6;
+}
+button:hover { background-color: #1e4f86; }
+button:focus, input:focus, textarea:focus, select:focus {
+    outline-color: #93b4dd;
+}
+.tab {
+    color: #334155;
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+}
+.tab:hover { color: #ffffff; background-color: #2563a6; }
+.tab.is-active {
+    color: #2563a6;
+    background-color: #eef4fc;
+    border-color: #2563a6;
+}
+#agreeMessage { color: #475569; background-color: #f1f5f9; }
+#agreeMessage.is-ready, #subscribeMessage.is-success {
+    color: #166534;
+    background-color: #edf7ef;
+}
+#subscribeMessage.is-error {
+    color: #991b1b;
+    background-color: #fef2f2;
+}
+#startButton:disabled, #subscribeButton:disabled {
+    color: #ffffff;
+    background-color: #94a3b8;
+}
+#recording-dialog {
+    color: #253044;
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+#recording-dialog::backdrop { background: rgba(15, 23, 42, .45); }
+.training-flow .progress__item.is-active { color: #2563a6; }
+.training-flow .error-message { color: #b42318; }
+.training-flow #presentation-title.has-error { border-color: #b42318; }
+.training-flow #duration-range { accent-color: #2563a6; }
+.training-flow input[type="checkbox"], .training-flow input[type="radio"] {
+    accent-color: #2563a6;
+}
+.training-flow .summary-list > div { border-bottom-color: #e2e8f0; }
+
+/* 기존 다크 모드 기능 유지: 차분한 회색 계열 */
+body.dark { color: #edf2f7; background-color: #151c29; }
+body.dark h2, body.dark h3, body.dark p, body.dark nav a { color: #edf2f7; }
+body.dark .feature-card, body.dark .event-card,
+body.dark .subscribe-card, body.dark .training-flow,
+body.dark .panel {
+    color: #edf2f7;
+    background-color: #222c3c;
+    border-color: #3b485b;
+}
+body.dark .tab { color: #edf2f7; background-color: #222c3c; border-color: #3b485b; }
+body.dark .tab.is-active { color: #bdd7fb; border-color: #7ca8e1; background-color: #2b3d56; }
+body.dark #recording-dialog { color: #edf2f7; background-color: #222c3c; border-color: #3b485b; }
+body.dark #agreeMessage { color: #334155; background-color: #f1f5f9; }
+body.dark #agreeMessage.is-ready { color: #166534; background-color: #edf7ef; }
+body.dark .training-flow .error-message { color: #fda4af; }
+
+
+/* 중간고사 신규 요청서: 기존 수업 신청 배치와 색상 유지 */
+#feedback-request { margin-top: 32px; }
+#feedback-request[hidden], #feedback-preview[hidden], #feedback-inputs[hidden] { display: none; }
+.feedback-context { padding: 12px 16px; background: #eef4fc; border-radius: 10px; }
+.feedback-inputs { display: flex; flex-direction: column; gap: 12px; }
+.feedback-inputs fieldset { border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; }
+.feedback-inputs fieldset label { display: inline-flex; align-items: center; gap: 6px; margin: 8px 16px 4px 0; }
+.feedback-inputs input[type="radio"] { flex: none; width: auto; accent-color: #2563a6; }
+.feedback-inputs textarea { display: block; width: 100%; min-height: 110px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font: inherit; resize: vertical; }
+.feedback-inputs .error-message { color: #b42318; margin: 0; }
+#feedback-summary-detail { overflow-wrap: anywhere; max-width: 70%; text-align: right; white-space: pre-wrap; }
+.secondary-button { background-color: #64748b; }
+.secondary-button:hover { background-color: #475569; }
+button:disabled { cursor: not-allowed; background-color: #94a3b8; }
+body.dark .feedback-context { color: #edf2f7; background: #2b3d56; }
+body.dark .feedback-inputs fieldset { border-color: #3b485b; }
+body.dark .feedback-inputs .error-message { color: #fda4af; }
+body.dark #feedback-summary-detail { color: #edf2f7; }
+body.dark .training-flow .summary-list strong, body.dark .training-flow .summary-list span { color: #edf2f7; }
+@media (max-width: 768px) {
+  .feedback-inputs fieldset label { display: flex; }
+  #feedback-summary-detail { max-width: 60%; }
+}
+
+/* 상태 메시지·타이틀 다크모드 대비 보완 */
+body.dark #subscribeMessage:not(.is-success):not(.is-error) { color: #edf2f7; }
+body.dark #subscribeMessage.is-success { color: #166534; }
+body.dark #subscribeMessage.is-error { color: #991b1b; }
+body.dark .training-flow label, body.dark .feedback-inputs legend { color: #edf2f7; }
+
+/* 수강 여부 확인: 신규 피드백 요청 상태 */
+#feedback-request .agree-row { display: flex; align-items: center; gap: 8px; }
+#feedback-request .agree-row input { flex: 0 0 auto; width: auto; }
+body.dark #feedback-request .agree-row { color: #edf2f7; }
